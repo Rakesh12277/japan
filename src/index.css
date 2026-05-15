@@ -1,0 +1,314 @@
+@import "tailwindcss";
+
+/* ── Google Fonts are loaded via index.html ── */
+
+:root {
+  --mist-black: #0A0A0A;
+  --mountain-cream: #F5E8D3;
+  --kimono-white: #FAFAFA;
+  --lime-accent: #D4F87A;
+  --sakura-pink: #FFB7C5;
+  --mouse-gray: #888888;
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --ease-exhale: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  font-size: 16px;
+}
+
+body {
+  background-color: #0A0A0A;
+  color: #FAFAFA;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Custom Cursor ─────────────────────────────────────── */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: #FAFAFA;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  transition: width 0.2s ease, height 0.2s ease;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.4s var(--ease-exhale),
+    height 0.4s var(--ease-exhale),
+    border-color 0.3s ease;
+}
+
+.cursor-ring.hovering {
+  width: 52px;
+  height: 52px;
+  border-color: #D4F87A;
+}
+
+/* ── Typography ────────────────────────────────────────── */
+.font-bebas {
+  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  letter-spacing: 0.03em;
+}
+
+.font-cormorant {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-nav {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* ── Hero JAPAN display type ──────────────────────────── */
+.hero-japan-text {
+  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  font-size: clamp(130px, 21vw, 320px);
+  line-height: 0.84;
+  letter-spacing: -0.005em;
+  color: rgba(250, 250, 250, 0.92);
+  white-space: nowrap;
+  text-shadow:
+    0 0 80px rgba(245, 200, 120, 0.16),
+    0 0 200px rgba(245, 180, 80, 0.08);
+}
+
+/* ── Nav hover underline ───────────────────────────────── */
+.nav-link {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.35s var(--ease-exhale);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ── Book button ────────────────────────────────────────── */
+.book-btn {
+  position: relative;
+  overflow: hidden;
+  background: rgba(245, 232, 211, 0.1);
+  border: 1px solid rgba(245, 232, 211, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: color 0.4s ease;
+}
+
+.book-btn::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0%;
+  background: linear-gradient(135deg, #c8920f 0%, #e8b840 100%);
+  transition: height 0.45s var(--ease-exhale);
+  z-index: 0;
+}
+
+.book-btn:hover::before {
+  height: 100%;
+}
+
+.book-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Polaroid card ─────────────────────────────────────── */
+.polaroid-card {
+  position: relative;
+  background: rgba(20, 20, 20, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+  overflow: hidden;
+  transition:
+    transform 0.35s var(--ease-exhale),
+    box-shadow 0.35s var(--ease-exhale);
+  flex-shrink: 0;
+  cursor: none;
+}
+
+.polaroid-card:hover {
+  transform: translateY(-7px) scale(1.02) !important;
+  box-shadow:
+    0 20px 56px rgba(212, 248, 122, 0.14),
+    0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.polaroid-card img {
+  transition: transform 0.5s var(--ease-exhale);
+}
+
+.polaroid-card:hover img {
+  transform: scale(1.08);
+}
+
+/* ── Bento cards ────────────────────────────────────────── */
+.bento-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  padding: 28px 26px;
+  transition:
+    transform 0.32s var(--ease-exhale),
+    border-color 0.32s ease,
+    box-shadow 0.32s ease;
+  cursor: none;
+}
+
+.bento-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(212, 248, 122, 0.5);
+  box-shadow:
+    0 14px 44px rgba(212, 248, 122, 0.07),
+    0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.bento-card:hover .bento-icon {
+  transform: scale(1.12);
+}
+
+.info-box {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.info-box:hover {
+  background: rgba(212, 248, 122, 0.12) !important;
+  border-color: rgba(212, 248, 122, 0.5) !important;
+  transform: translateY(-3px);
+}
+
+.bento-icon {
+  transition: transform 0.32s var(--ease-exhale);
+}
+
+/* ── Form fields ────────────────────────────────────────── */
+.form-field {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  color: #FAFAFA;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 10px 0;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-field::placeholder {
+  color: rgba(255, 255, 255, 0.36);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.form-field:focus {
+  border-bottom-color: #D4F87A;
+}
+
+/* ── Send button ────────────────────────────────────────── */
+.send-btn {
+  background: #F5E8D3;
+  color: #0A0A0A;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 50px;
+  padding: 15px 24px;
+  width: 100%;
+  cursor: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.send-btn:hover {
+  background: #D4F87A;
+  transform: translateY(-1px);
+}
+
+/* ── Hairline decorative rules ─────────────────────────── */
+.hairline {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  flex: 1;
+}
+
+/* ── Glass panel ────────────────────────────────────────── */
+.glass-panel {
+  background: rgba(12, 12, 12, 0.65);
+  backdrop-filter: blur(28px) saturate(140%);
+  -webkit-backdrop-filter: blur(28px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 248, 122, 0.35);
+}
+
+/* ── Selection ──────────────────────────────────────────── */
+::selection {
+  background: rgba(212, 248, 122, 0.28);
+  color: #FAFAFA;
+}
+
+/* ── Image fade-in ──────────────────────────────────────── */
+img {
+  transition: opacity 0.45s ease;
+}
